@@ -1,0 +1,16 @@
+{
+  "name": "com.rpgframework.core.sharedtypes",
+  "version": "0.1.0",
+  "displayName": "RPG Framework Core Shared Types",
+  "description": "Shared types for the Core RPGFramework package, other modules should reference these when necessary",
+  "unity": "6000.0",
+  "keywords": [
+    "RPG Framework",
+    "Core",
+	"Shared Types"
+  ],
+  "author": {
+    "name": "Elliott Armstrong",
+    "url": "https://github.com/KandyMan1990/RPGFramework.Core.SharedTypes"
+  }
+}
