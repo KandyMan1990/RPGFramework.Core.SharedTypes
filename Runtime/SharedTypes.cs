@@ -17,11 +17,16 @@ namespace RPGFramework.Core.SharedTypes
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct RuntimeResumeData
     {
-        public byte ModuleId;
-        public int  Arg0;
-        public int  Arg1;
-        public int  Arg2;
-        public int  Arg3;
+        public byte  ModuleId;
+        public int   Index;
+        public int   SpawnId;
+        public float PositionX;
+        public float PositionY;
+        public float PositionZ;
+        public float RotationX;
+        public float RotationY;
+        public float RotationZ;
+        public float RotationW;
     }
 
     /// <summary>
