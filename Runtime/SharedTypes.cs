@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace RPGFramework.Core.SharedTypes
@@ -7,20 +6,6 @@ namespace RPGFramework.Core.SharedTypes
     {
         Task OnEnterAsync();
         Task OnExitAsync();
-    }
-
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public struct RuntimeResumeData
-    {
-        public int   Index;
-        public int   SpawnId;
-        public float PositionX;
-        public float PositionY;
-        public float PositionZ;
-        public float RotationX;
-        public float RotationY;
-        public float RotationZ;
-        public float RotationW;
     }
 
     /// <summary>
