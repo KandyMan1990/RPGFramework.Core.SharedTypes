@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace RPGFramework.Core.SharedTypes
 {
@@ -22,7 +22,13 @@ namespace RPGFramework.Core.SharedTypes
         /// </summary>
         Session = 1,
         /// <summary>
-        /// Something that doesn't need to be saved nor persist for any length of time, should be used and discarded over 1 frame
+        /// Scratch space for a script's own working values. Not saved, and cleared whenever a field or a
+        /// module is loaded, so nothing can leak from one field into the next.<br /><br />
+        /// Use it for intermediates — a random roll about to be compared, a loop counter, a value being
+        /// built up. The point is that it costs nothing permanent:
+        /// <see cref="Global" /> bytes are in every save file forever, and <see cref="Session" /> bytes
+        /// accumulate for the whole session, so neither is somewhere to put a value that matters for
+        /// three instructions.
         /// </summary>
         Temp = 2
     }
