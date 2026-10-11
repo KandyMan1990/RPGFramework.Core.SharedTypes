@@ -4,8 +4,23 @@ namespace RPGFramework.Core.SharedTypes
 {
     public interface IModule
     {
-        Task OnEnterAsync();
+        /// <summary>
+        /// Entered, its scene loaded and its container built. <paramref name="entry" /> is how the router chose to enter it,
+        /// one of <see cref="ModuleEntries" />'s or the module's own.
+        /// </summary>
+        Task OnEnterAsync(byte entry);
+
+        /// <summary>Left, for good: its scene unloads and its container is disposed after this. It may be suspended.</summary>
         Task OnExitAsync();
+
+        /// <summary>
+        /// Another module opens over this one, which stays loaded, and should be still until <see cref="OnResumeAsync" />:
+        /// taking no input, ticking nothing, and showing nothing it would not want seen under the other.
+        /// </summary>
+        Task OnSuspendAsync();
+
+        /// <summary>The module opened over this one has closed, and this one carries on from where it was.</summary>
+        Task OnResumeAsync();
     }
 
     /// <summary>
