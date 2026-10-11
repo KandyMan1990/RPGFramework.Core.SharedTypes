@@ -2,20 +2,27 @@
 
 namespace RPGFramework.Core.SharedTypes
 {
+    /// <summary>
+    /// A part of the game in a scene of its own — the field, the menu, a battle — which Core enters, suspends, resumes
+    /// and leaves as the game's module router decides.
+    /// </summary>
     public interface IModule
     {
         /// <summary>
-        /// Entered, its scene loaded and its container built. <paramref name="entry" /> is how the router chose to enter it,
-        /// one of <see cref="ModuleEntries" />'s or the module's own.
+        /// Entered, its scene loaded and its container built. <paramref name="entry" /> is how the router chose to
+        /// enter it, one of <see cref="ModuleEntries" />'s or the module's own.
         /// </summary>
         Task OnEnterAsync(byte entry);
 
-        /// <summary>Left, for good: its scene unloads and its container is disposed after this. It may be suspended.</summary>
+        /// <summary>
+        /// Left, for good: its scene unloads and its container is disposed after this. It may be suspended.
+        /// </summary>
         Task OnExitAsync();
 
         /// <summary>
-        /// Another module opens over this one, which stays loaded, and should be still until <see cref="OnResumeAsync" />:
-        /// taking no input, ticking nothing, and showing nothing it would not want seen under the other.
+        /// Another module opens over this one, which stays loaded, and should be still until
+        /// <see cref="OnResumeAsync" />: taking no input, ticking nothing, and showing nothing it would not want seen
+        /// under the other.
         /// </summary>
         Task OnSuspendAsync();
 
