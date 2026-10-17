@@ -28,38 +28,53 @@ namespace RPGFramework.Core.SharedTypes
         public const byte RETURN = 1;
     }
 
-    /// <summary>A change a router decides on, which Core carries out.</summary>
+    /// <summary>
+    /// A change a router decides on, which Core carries out under a cover: the transitions that cover and reveal the
+    /// screen, by the hash of their names in the game's transition database, <c>0</c> for its defaults.
+    /// </summary>
     public readonly struct ModuleChange
     {
         public ModuleChangeKind Kind     { get; }
         public byte             ModuleId { get; }
         public byte             Entry    { get; }
+        public ulong            Cover    { get; }
+        public ulong            Reveal   { get; }
 
-        private ModuleChange(ModuleChangeKind kind, byte moduleId, byte entry)
+        private ModuleChange(ModuleChangeKind kind, byte moduleId, byte entry, ulong cover, ulong reveal)
         {
             Kind     = kind;
             ModuleId = moduleId;
             Entry    = entry;
+            Cover    = cover;
+            Reveal   = reveal;
         }
 
         public static ModuleChange Over(byte moduleId, byte entry = ModuleEntries.NEW)
         {
-            return new ModuleChange(ModuleChangeKind.Over, moduleId, entry);
+            return new ModuleChange(ModuleChangeKind.Over, moduleId, entry, 0, 0);
         }
 
         public static ModuleChange Close()
         {
-            return new ModuleChange(ModuleChangeKind.Close, 0, ModuleEntries.NEW);
+            return new ModuleChange(ModuleChangeKind.Close, 0, ModuleEntries.NEW, 0, 0);
         }
 
         public static ModuleChange Replace(byte moduleId, byte entry = ModuleEntries.NEW)
         {
-            return new ModuleChange(ModuleChangeKind.Replace, moduleId, entry);
+            return new ModuleChange(ModuleChangeKind.Replace, moduleId, entry, 0, 0);
         }
 
         public static ModuleChange Clear(byte moduleId, byte entry = ModuleEntries.NEW)
         {
-            return new ModuleChange(ModuleChangeKind.Clear, moduleId, entry);
+            return new ModuleChange(ModuleChangeKind.Clear, moduleId, entry, 0, 0);
+        }
+
+        /// <summary>The same change, covered and revealed by these transitions, <c>0</c> for the defaults.</summary>
+        public ModuleChange WithTransitions(ulong cover, ulong reveal)
+        {
+            ModuleChange change = new ModuleChange(Kind, ModuleId, Entry, cover, reveal);
+
+            return change;
         }
 
         public override string ToString()
