@@ -28,6 +28,12 @@ namespace RPGFramework.Core.SharedTypes
 
         /// <summary>The module opened over this one has closed, and this one carries on from where it was.</summary>
         Task OnResumeAsync();
+
+        /// <summary>
+        /// On screen: its entry or its resumption has been revealed. Core covers the screen around every change, so a
+        /// module waits for this to take input or start anything the player should see from its start.
+        /// </summary>
+        void OnRevealed();
     }
 
     /// <summary>
