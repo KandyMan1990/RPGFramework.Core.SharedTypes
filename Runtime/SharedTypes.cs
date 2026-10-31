@@ -30,8 +30,10 @@ namespace RPGFramework.Core.SharedTypes
         Task OnResumeAsync();
 
         /// <summary>
-        /// On screen: its entry or its resumption has been revealed. Core covers the screen around every change, so a
-        /// module waits for this to take input or start anything the player should see from its start.
+        /// On screen: its entry or its resumption has been revealed. Core covers the screen around every change and lets
+        /// routed input through as the reveal starts, so a module that should take none while it plays waits for this to
+        /// turn its own input on, and to start anything the player should see from its start. Not called when the
+        /// module's own cover took over the reveal.
         /// </summary>
         void OnRevealed();
     }
