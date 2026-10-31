@@ -60,6 +60,12 @@ namespace RPGFramework.Core.SharedTypes
         /// accumulate for the whole session, so neither is somewhere to put a value that matters for
         /// three instructions.
         /// </summary>
-        Temp = 2
+        Temp = 2,
+        /// <summary>
+        /// The player's settings — the language, the volumes, the message speeds, and any of the game's own — saved to
+        /// the settings file rather than a save, as they belong to whoever is at the machine rather than to a
+        /// playthrough. Read as the game starts, and kept through every new game and load. Scripts cannot use it.
+        /// </summary>
+        Settings = 3
     }
 }
