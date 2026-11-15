@@ -3,7 +3,7 @@
 The smallest contracts every RPG Framework module shares, kept apart from Core so a module's own shared-types package
 can depend on them without depending on Core.
 
-Requires Unity 6000.6 or newer, and depends on nothing.
+Requires Unity 6000.7 or newer, and depends on nothing.
 
 - **`IModule`**: what Core switches between. A module is entered and exited asynchronously, with `OnEnterAsync` and
   `OnExitAsync`, so it can fade, load and unload as it goes, and suspended and resumed, with `OnSuspendAsync` and
